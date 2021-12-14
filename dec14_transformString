@@ -1,0 +1,41 @@
+class Solution
+{
+    public:
+    int transform (string A, string B)
+    {
+        //code here.
+        int n1 = A.size();
+        int n2 = B.size();
+        
+        if(n1 != n2)    return -1;
+        vector<int> v(256,0);
+        
+        for(int i = 0;i < n1;i++){
+            v[A[i]]++;
+            v[B[i]]--;
+        }
+        
+        for(int i = 0;i<256;i++){
+            if(v[i] != 0)   return -1;
+        }
+        
+        // Here all basic test case passed.
+        
+        int res = 0;
+        
+        n1--;
+        n2--;
+        
+        while(n1 >= 0 && n2 >= 0){
+            if(A[n1] == B[n2]){
+                n1--;
+                n2--;
+            }else{
+                res++;
+                n1--;
+            }
+        }
+        
+        return res;
+    }
+};
